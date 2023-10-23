@@ -15,6 +15,7 @@ def agenda_de_telefone():
             agenda.append(contato)
             # Incluindo numero do contato
         elif option == 2:
+            confirm = False
             # Pegando o nome do contato|key
             nome_busca = input(f"\n\tDigite o nome do contato:")
             # Procurando contato na agenda
@@ -23,27 +24,51 @@ def agenda_de_telefone():
                     telefones = len(nome)
                     # Adicionando telefone ao contato
                     nome[f"Telefone{telefones}"] = input(f"\n\tDigite o telefone do contato:")
+                    confirm = True
                     break
+            # Se não foi confirmado que o contato foi encotrado
+            if confirm is not True:
+                # Aviso avisando que o contato digitado nao foi encontrado
+                print(f"\n\tNão foi possivel encontrar o contato!")
         # Excluindo contato
         elif option == 3:
+            confirm = False
             contato_index = -1
             # Pegando o nome do contato|key
             nome_busca = input(f"\n\tDigite o nome do contato:")
             # Procurando contato na agenda
             for nome in agenda:
+                # Contando até o index do contato desejado
                 contato_index += 1
+                # Se nome iterado igual a nome digitado ...
                 if "nome" in nome and nome["nome"] == nome_busca:
+                    # Removendo contato no index do contato buscado
                     agenda.pop(contato_index)
+                    confirm = True
+                    # E parando o loop for
                     break
+            # Se não foi confirmado que o contato foi encotrado
+            if confirm is not True:
+                # Aviso avisando que o contato digitado nao foi encontrado
+                print(f"\n\tNão foi possivel encontrar o contato!")
         # Buscando dados salvos do contato
         elif option == 4:
+            confirm = False
             # Pegando o nome do contato|key
             nome_busca = input(f"\n\tDigite o nome do contato:")
             # Procurando contato na agenda
             for nome in agenda:
+                # Se nome iterado igual a nome digitado ...
                 if "nome" in nome and nome["nome"] == nome_busca:
+                    # Mostrando contato e telefones
                     print(f"\n\t{nome}")
+                    confirm = True
+                    # Parando o loop for
                     break
+            # Se não foi confirmado que o contato foi encotrado
+            if confirm is not True:
+                # Aviso avisando que o contato digitado nao foi encontrado
+                print(f"\n\tNão foi possivel encontrar o contato!")
         # Encarrando programa
         elif option == 5:
             print(f"\n\tEncerrando...")
